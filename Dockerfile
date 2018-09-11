@@ -3,11 +3,10 @@ FROM debian:latest
 MAINTAINER Yiqiu Jia <yiqiujia@hotmail.com>
 
 RUN apt-get update && apt-get upgrade -y && apt-get clean
-RUN apt-get install -y net-tools vim curl wget unzip screen openssh-server
+RUN apt-get install -y net-tools vim curl wget unzip screen openssh-server git subversion locales
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get install -y locales
 ## Set LOCALE to UTF8
 RUN echo "zh_CN.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen zh_CN.UTF-8 && \
