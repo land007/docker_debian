@@ -31,6 +31,5 @@ RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 #ENTRYPOINT /etc/init.d/ssh start && bash
 EXPOSE 20022/tcp
 
+
 #docker stop debian ; docker rm debian ; docker run -it --privileged --name debian land007/debian:latest
-
-
