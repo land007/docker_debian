@@ -3,7 +3,7 @@ FROM debian:latest
 MAINTAINER Yiqiu Jia <yiqiujia@hotmail.com>
 
 RUN apt-get update && apt-get upgrade -y && apt-get clean
-RUN apt-get install -y net-tools vim curl wget unzip screen openssh-server git subversion locales
+RUN apt-get install -y net-tools vim curl wget unzip screen openssh-server git subversion locales software-properties-common
 
 ENV DEBIAN_FRONTEND noninteractive
 
