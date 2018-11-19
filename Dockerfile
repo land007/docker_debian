@@ -22,7 +22,8 @@ RUN echo "land007:1234567" | /usr/sbin/chpasswd
 #land007:x:1000:1000::/home/land007:/bin/bash
 RUN sed -i "s/^land007:x.*/land007:x:0:1000::\/home\/land007:\/bin\/bash/g" /etc/passwd
 RUN set /files/etc/ssh/sshd_config/PermitRootLogin yes
-RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+RUN sed -i "s/^PermitRootLogin prohibit-password/PermitRootLogin yes/g" /etc/ssh/sshd_config
+#RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 
 CMD /etc/init.d/ssh start && bash
 #ENTRYPOINT /etc/init.d/ssh start && bash
