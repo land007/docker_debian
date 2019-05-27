@@ -3,7 +3,7 @@ FROM debian:latest
 MAINTAINER Yiqiu Jia <yiqiujia@hotmail.com>
 
 RUN apt-get update && apt-get upgrade -y && apt-get clean
-RUN apt-get install -y net-tools vim curl wget unzip screen openssh-server git subversion locales software-properties-common
+RUN apt-get install -y net-tools vim curl wget unzip screen openssh-server git subversion locales software-properties-common uuid-runtime
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -26,13 +26,18 @@ RUN sed -i "s/^land007:x.*/land007:x:0:1000::\/home\/land007:\/bin\/bash/g" /etc
 RUN set /files/etc/ssh/sshd_config/PermitRootLogin yes
 RUN sed -i "s/^PermitRootLogin prohibit-password/PermitRootLogin yes/g" /etc/ssh/sshd_config
 #RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
-
-CMD /etc/init.d/ssh start && bash
-#ENTRYPOINT /etc/init.d/ssh start && bash
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+RUN echo $(date "+%Y-%m-%d_%H:%M:%S") >> /.image_time
+RUN echo "land007/debian" >> /.image_name
+ADD analytics.sh /
+ADD start.sh /
+RUN chmod +x /*.sh
 
 #ENTRYPOINT /etc/init.d/ssh start && bash
 EXPOSE 20022/tcp
 
+CMD /etc/init.d/ssh start && /start.sh && bash
+#ENTRYPOINT /etc/init.d/ssh start && bash
 
 #docker stop debian ; docker rm debian ; docker run -it --privileged --name debian land007/debian:latest
