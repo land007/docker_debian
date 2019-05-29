@@ -28,8 +28,10 @@ RUN sed -i "s/^PermitRootLogin prohibit-password/PermitRootLogin yes/g" /etc/ssh
 #RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-RUN echo $(date "+%Y-%m-%d_%H:%M:%S") >> /.image_time
-RUN echo "land007/debian" >> /.image_name
+RUN echo $(date "+%Y-%m-%d_%H:%M:%S") >> /.image_times
+RUN echo $(date "+%Y-%m-%d_%H:%M:%S") > /.image_time
+RUN echo "land007/debian" >> /.image_names
+RUN echo "land007/debian" > /.image_name
 ADD analytics.sh /
 ADD start.sh /
 RUN chmod +x /*.sh
