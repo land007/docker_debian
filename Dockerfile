@@ -43,3 +43,4 @@ CMD /etc/init.d/ssh start && /start.sh && bash
 #ENTRYPOINT /etc/init.d/ssh start && bash
 
 #docker stop debian ; docker rm debian ; docker run -it --privileged --name debian land007/debian:latest
+#> docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t land007/debian --push .
