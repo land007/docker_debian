@@ -26,10 +26,7 @@ RUN apt-get install -y --force-yes --no-install-recommends fonts-wqy-microhei tt
 	sed -i "s/^PermitRootLogin prohibit-password/PermitRootLogin yes/g" /etc/ssh/sshd_config && \
 #	echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
 	cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-ADD check.sh / \
-	analytics.sh / \
-	start.sh / \
-	task.sh /
+ADD *.sh /
 RUN sed -i 's/\r$//' /*.sh ; chmod +x /*.sh && \
 	echo $(date "+%Y-%m-%d_%H:%M:%S") >> /.image_times && \
 	echo $(date "+%Y-%m-%d_%H:%M:%S") > /.image_time && \
