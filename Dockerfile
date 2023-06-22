@@ -42,4 +42,4 @@ CMD /task.sh ; /start.sh ; bash
 
 #docker build -t land007/debian:latest .
 #docker stop debian ; docker rm debian ; docker run -it --privileged --name debian land007/debian:latest
-#> docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t land007/debian --push .
+#> docker buildx build --platform linux/amd64,linux/arm64/v8,linux/arm/v7 -t land007/debian --push .
